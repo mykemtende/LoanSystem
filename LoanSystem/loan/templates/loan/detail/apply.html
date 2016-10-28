@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block title %}Apply for a loan{% endblock %}
+{% block sidebar_detail %}active{% endblock %}
+{% block body_header %}Apply for a loan{% endblock %}
+{% block body %}
+    <p class="lead">Fill loan application form  then click '{{ form_button }}' when finished.</p>
+    {% include "singleform.html" %}
+{% endblock %}

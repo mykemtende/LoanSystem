@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{%load staticfiles %}
+
+
+{% block title %}Overview{% endblock %}
+{% block sidebar_loan %}active{% endblock %}
+{% block body_header %}Welcome to our Loan calculator: {{ user.account }}{% endblock %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loan Management System</title>
+
+    <script src="{% static 'js/jquery-1.11.1.min.js' %} "></script>
+    <script src="{% static  'js/bootstrap.min.js' %}"></script>
+    <title></title>
+    <script>
+        $("a[href='#top']").click(function() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return false;
+        });
+
+        $(document).ready(function(){
+            $("input[type='submit']").click(function(e) {
+                location.hash = "";
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <br />
+    <div class="container">
+        {% crispy form %}
+        <br />
+        <br />
+        {% if company_total_amount %}
+            <hr />
+            <br />
+            <h3><a name="results">Loan Results:</a> <small>
+                <a href="#top" style="color: green">^ Top</a></small>
+            </h3>
+            <div class="well well-lg">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Company Loan system</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-right alert-info"><b>Total amount including interest (Ksh):</b></td>
+                        {% if company_total_amount %}
+
+                            <td class="alert-danger">{{ company_total_amount }} (Total Amount)</td>
+                        {% else %}
+
+                            <td class="alert-success">{{ company_total_amount }} (Lower Total amount)</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td class="text-right alert-info"><b>interest (Ksh):</b></td>
+                        {% if company_total_interest_Ksh %}
+            
+                            <td class="alert-danger">{{ company_total_interest_Ksh }} (Interest Paid)</td>
+                        {% else %}
+                
+                            <td class="alert-success">{{ company_total_interest_Ksh }} (Less Interest Paid)</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td class="text-right alert-info"><b>Monthly payment (Ksh):</b></td>
+                        {% if company_monthly_payment %}
+                    
+                            <td class="alert-danger">{{ company_monthly_payment }} (Monthly Payments)</td>
+                        {% else %}
+                    
+                            <td class="alert-success">{{ company_monthly_payment}} (Lower Monthly Payments)</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td class="text-right alert-info"><b>Rate (%):</b></td>
+                        {% if real_company_interest_rate %}
+                
+                            <td class="alert-danger">{{ real_company_interest_rate}} </td>
+                        {% else %}
+                        
+                            <td class="alert-success">{{ real_company_interest_rate}}</td>
+                        {% endif %}
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        {% endif %}
+    </div><!-- /.container -->
+</body>
+
+<script>
+    {% if company_total_amount %}
+        location.hash = "#results";
+    {% endif %}
+</script>
+
+</html>
+
+{% endblock %}
+
+

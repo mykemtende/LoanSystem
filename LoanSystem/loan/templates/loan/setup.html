@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% load staticfiles %}
+{% block title %}First time setup{% endblock %}
+{% block brand_link %}{% endblock %}
+{% block nav_button %}{% endblock %}
+{% block body_header %}First time setup{% endblock %}
+{% block body %}
+    <p class="lead">It looks Loan Management System  was recently setup.
+        Please fill out the admin account's information and click '{{ form_button }}' when finished.
+        This will be the primary admin account for interacting with the Loan System .</p>
+    {% include "singleform.html" %}
+{% endblock %}

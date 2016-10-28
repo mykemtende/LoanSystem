@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block title %}Customer Information{% endblock %}
+{% block sidebar_detail %}active{% endblock %}
+{% block body_header %}Customer Information{% endblock %}
+{% block body %}
+    <p class="lead">This is your most recent  information.</p>
+    {% include "singleform.html" %}
+{% endblock %}

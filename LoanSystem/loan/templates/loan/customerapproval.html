@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block title %}Manage customers{% endblock %}
+{% block sidebar_loanofficer_users %}active{% endblock %}
+{% block body_header %}
+    Manage Registered customers
+    <br>
+
+{% endblock %}
+{% block body %}
+    <table id="datatable" class="table table-hover table-striped table-bordered">
+        <thead>
+            <th>Username</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>IDNO</th>
+            <th>Approval</th>
+            
+        </thead>
+        <tbody>
+            {% for account in query %}
+                <tr>
+                    <td>{{ account.user.username }}</td>
+                    <td>{{ account.profile.firstname }}</td>
+                    <td>{{ account.profile.lastname }}</td>
+                    <td>{{ account.profile.phone }}</td>
+                    <td>{{ account.profile.address }}</td>
+                    <td>{{ account.profile.IDNO }}</td>
+                    <td data-value="{{ account.role }}">
+                        <form action="./" method="post" class="form-inline">{% csrf_token %}
+
+                            <input type="hidden" name="pk" value="{{ account.pk }}">
+                            <select class="form-control" name="approved">
+                                <option value="0" {% if account.approved == 0 %}selected="selected"{% endif %}>Decline</option>
+                                <option value="1" {% if account.approved == 1 %}selected="selected"{% endif %}>Approved</option>
+                            </select>
+                            <input class="btn btn-primary" type="submit" value="Save"/>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        } );
+    </script>
+{% endblock %}

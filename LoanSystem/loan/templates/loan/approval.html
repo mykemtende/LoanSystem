@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% load app_filters %}
+{% load staticfiles %}
+{% block title %}Approval{% endblock %}
+{% block brand_link %}{% endblock %}
+{% block body_header %}Hi Welcome to Loan Management System go to  Account management  then update  Your details  for loan approval ...! {% endblock %}
+{% block body %}
+    <div class="row">
+        <!--<p class="lead" >Hi Your details has been recieved waiting for approval ...!</p>-->
+    </div>
+    {% include "singleform.html" %}
+    <div class="row">
+        <div class="col-sm-12">
+            <br>
+            
+        </div>
+    </div>
+{% endblock %}

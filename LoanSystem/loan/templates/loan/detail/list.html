@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block title %}View Customer Loan application details{% endblock %}
+{% block sidebar_detail %}active{% endblock %}
+{% block body_header %}
+     Customers  Loan Application Details 
+{% endblock %}
+{% block body %}
+    <table id="datatable" class="table table-hover table-striped table-bordered">
+        <thead>
+            <th>Customer Name</th>
+            <th>Loan Amount</th>
+            <th>Address</th>
+        
+        </thead>
+        <tbody>
+            {% for detail in query %}
+                <tr>
+                    <td>{{ detail.account.profile }}</td>
+                    <td>{{ detail.level }}</td>
+                    <td>{{ detail.address }}</td>
+                    <td>
+                        {% if not user.account.role == 10 %}
+                           
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        <tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 3 },
+                    { "searchable": false, "targets": 3 }
+                ]
+            });
+        } );
+    </script>
+{% endblock %}

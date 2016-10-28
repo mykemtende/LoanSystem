@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block title %}Manage Users{% endblock %}
+{% block sidebar_admin_users %}active{% endblock %}
+{% block body_header %}
+    Manage  Loan Management System  Users
+    <br>
+    <a class="btn btn-success btn-sm" href="/admin/createemployee/" role="button">Add LoanOfficer</a>
+{% endblock %}
+{% block body %}
+    <table id="datatable" class="table table-hover table-striped table-bordered">
+        <thead>
+            <th>Username</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Role       |    Approval Status</th>
+            
+        </thead>
+        <tbody>
+            {% for account in query %}
+                <tr>
+                    <td>{{ account.user.username }}</td>
+                    <td>{{ account.profile.firstname }}</td>
+                    <td>{{ account.profile.lastname }}</td>
+                    <td data-value="{{ account.role }}">
+                        <form action="./" method="post" class="form-inline">{% csrf_token %}
+                            <input type="hidden" name="pk" value="{{ account.pk }}">
+                            <select class="form-control" name="role">
+                                <option value="10" {% if account.role == 10 %}selected="selected"{% endif %}>Customer</option>
+                                <option value="30" {% if account.role == 30 %}selected="selected"{% endif %}>LoanOfficer</option>
+                                <option value="40" {% if account.role == 40 %}selected="selected"{% endif %}>Admin</option>
+                            </select>
+
+                            <input type="hidden" name="pk" value="{{ account.pk }}">
+                            <select class="form-control" name="approved">
+                                <option value="0" {% if account.approved == 0 %}selected="selected"{% endif %}>Decline</option>
+                                <option value="1" {% if account.approved == 1 %}selected="selected"{% endif %}>Approved</option>
+                            </select>
+                            <input class="btn btn-primary" type="submit" value="Save"/>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        } );
+    </script>
+{% endblock %}

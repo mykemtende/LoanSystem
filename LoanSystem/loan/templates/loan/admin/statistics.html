@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block title %}View System Statics{% endblock %}
+{% block sidebar_admin_statistics%}active{% endblock %}
+{% block body_header %}
+    View Loan System Statistics
+{% endblock %}
+{% block body %}
+    <div class="col-sm-6">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <th>Statistic</th>
+                <th>Count</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Users logged in</td>
+                    <td>{{ total_logins }}</td>
+                </tr>
+                </tr>
+                    <td>Users logged out</td>
+                    <td>{{ total_logouts }}</td>
+                </tr>
+                </tr>
+                </tr>
+                </tr>
+                </tr>
+                </tr>
+                </tr>
+                    <td>Users registered</td>
+                    <td>{{ total_registered }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6">
+        {% include "singleform.html" %}
+    </div>
+{% endblock %}

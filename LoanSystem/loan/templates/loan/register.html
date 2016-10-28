@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% load staticfiles %}
+{% block title %}Customer Registration{% endblock %}
+{% block brand_link %}{% endblock %}
+{% block nav_button %}<a href="/login/">Login</a>{% endblock %}
+{% block body_header %}Customer Registration{% endblock %}
+{% block body %}
+    {% include "singleform.html" %}
+{% endblock %}
