@@ -1,0 +1,6 @@
+{
+  "name": "Loansystem",
+  "tagline": "MtendeMichael",
+  "body": "Loan Management system is a Python Django system which enables customers to register then wait for approval for them to apply for loan.\r\n\r\nThe system has three sections the Loan officers section which includes the approval of customers for loan and messages for loan status.\r\n\r\nThe administrator section which entails all users management , system statistics, loan calculations and messages .\r\n\r\nCustomers sections after registrations then approval includes ; customer loan application , appropriate messages for loan status , details for loan disbursement.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
