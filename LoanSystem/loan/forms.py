@@ -57,25 +57,6 @@ def setup_field(field, placeholder=None):
         field.widget.attrs['placeholder'] = placeholder
 
 
-class BasicForm(forms.Form):
-    def disable_field(self, field):
-        """
-        Marks the field as disabled.
-        :param field: The name of the field
-        """
-        self.fields[field].widget.attrs['disabled'] = ""
-
-    def mark_error(self, field, description):
-        """
-        Marks the given field as errous. The given description is displayed when the form it generated
-        :param field: The name of the field
-        :param description: The error description
-        """
-        self._errors[field] = self.error_class([description])
-        del self.cleaned_data[field]
-
-    def clear_errors(self):
-        self._errors = {}
 
 
 class LoginForm(BasicForm):
@@ -99,29 +80,6 @@ class LoginForm(BasicForm):
         return cleaned_data
 
 
-class AccountRegisterForm(BasicForm):
-    firstname = forms.CharField(label='First Name', max_length=50)
-    setup_field(firstname, 'Enter first name here')
-    lastname = forms.CharField(label='Last Name', max_length=50)
-    setup_field(lastname, 'Enter a last name here')
-    email = forms.EmailField(max_length=50, validators=[validate_username_available])
-    setup_field(email, 'Enter email here')
-    password_first = forms.CharField(label='Password', min_length=1, max_length=50, widget=forms.PasswordInput())
-    setup_field(password_first, "Enter password here")
-    password_second = forms.CharField(label='', min_length=1, max_length=50, widget=forms.PasswordInput())
-    setup_field(password_second, "Enter password again")
-
-    def clean(self):
-        """
-        This is to make sure both passwords fields have the same values in them. If they don't mark
-        them as erroneous.
-        """
-        cleaned_data = super(AccountRegisterForm, self).clean()
-        password_first = cleaned_data.get('password_first')
-        password_second = cleaned_data.get('password_second')
-        if password_first and password_second and password_first != password_second:
-            self.mark_error('password_second', 'Passwords do not match')
-        return cleaned_data
 
 
 class CustomerRegisterForm(AccountRegisterForm):
