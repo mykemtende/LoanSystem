@@ -8,22 +8,21 @@ Customers sections after registrations then approval includes ; customer loan ap
 
 The system uses MySQL database :
 
-
-
 Logins :
 Admin
 
-user: admin@gmail.com
+username: admin@gmail.com
 
 passwd: password
 
 Loan officers
 
-user: mary@gmail.com
+username: mary@gmail.com
 passwd: pass123
 
 
 Customer:
 
-user: edwin@gmail.com
+username: mtende@gmail.com
 passwd: abc123
+
